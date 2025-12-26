@@ -1,0 +1,19 @@
+/* css giỏ hàng */
+.shop-menu .nav .cart i {
+    position: relative;
+}
+
+.shop-menu .nav .cart i .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #FE980F;
+    color: white;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}

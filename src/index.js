@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import Index from './component/Blog/Index';
+import Detail from './component/Blog/Detail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route path='/blog/list' element={<Index />} />
+          <Route path='/blog/detail/:id' element={<Detail />} />
+        </Routes>
+      </App>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
