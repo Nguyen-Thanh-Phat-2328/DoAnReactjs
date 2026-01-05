@@ -8,20 +8,26 @@ import Home from './Home';
 import Index from './component/Blog/Index';
 import Detail from './component/Blog/Detail';
 import IndexMember from './component/Member/IndexMember';
+import Account from './component/Member/Account';
+import AppNoMenuLeft from './AppNoMenuLeft';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App>
-        <Routes>
-          <Route index path='/' element={<Home />} />
+      <Routes>
+        <Route element={<App />}>
           <Route path='/blog/list' element={<Index />} />
           <Route path='/blog/detail/:id' element={<Detail />} />
-          <Route path='/member/login-register' element={<IndexMember />} />
-        </Routes>
-      </App>
+        </Route>
+
+        <Route element={<AppNoMenuLeft />}>
+          <Route index path='/' element={<Home />} />
+          <Route path='/login' element={<IndexMember />} />
+          <Route path='/account' element={<Account />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );

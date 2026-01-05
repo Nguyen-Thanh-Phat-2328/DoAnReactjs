@@ -1,5 +1,39 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 export default function Head() {
+    const navigate = useNavigate();
+    let isLogin;
+    function renderLogin() {
+        const isLogin = JSON.parse(localStorage.getItem("user"));
+        if (isLogin) {
+            return (
+                <li>
+                    <a onClick={handleLogout}><i className="fa fa-lock"></i> Logout</a>
+                </li>
+            )
+        } else {
+            return (
+                <li>
+                    <Link to="/login"><i className="fa fa-lock"></i> Login</Link>
+                </li>
+            )
+        }
+    }
+
+    function renderAccount() {
+        const isLogin = JSON.parse(localStorage.getItem("user"));
+        if(isLogin) {
+            return (
+                <li><Link to={"/account"}><i className="fa fa-user"></i> Account</Link></li>
+            );
+        }
+    }
+
+    function handleLogout() {
+        localStorage.removeItem("user");
+        navigate('/login');
+    }
+
     return (
         <>
             <header id="header">
@@ -69,7 +103,7 @@ export default function Head() {
                             <div className="col-md-8 clearfix">
                                 <div className="shop-menu clearfix pull-right">
                                     <ul className="nav navbar-nav">
-                                        <li><a href=""><i className="fa fa-user"></i> Account</a></li>
+                                        {renderAccount()}
                                         <li><a href=""><i className="fa fa-star"></i> Wishlist</a></li>
                                         <li>
                                             <Link to="/checkout">
@@ -81,9 +115,7 @@ export default function Head() {
                                                 <i className="fa fa-shopping-cart"><span className="cart-count">0</span></i> Cart
                                             </Link>
                                         </li>
-                                        <li>
-                                            <Link to="/login"><i className="fa fa-lock"></i> Login</Link>
-                                        </li>
+                                        {renderLogin()}
                                     </ul>
                                 </div>
                             </div>
