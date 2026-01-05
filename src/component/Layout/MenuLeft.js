@@ -10,7 +10,7 @@ export default function MenuLeft() {
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        <span className="badge pull-right"><i class="fa fa-plus"></i></span>
                                         Sportswear
                                     </a>
                                 </h4>

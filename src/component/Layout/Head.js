@@ -4,26 +4,26 @@ export default function Head() {
         <>
             <header id="header">
                 {/* header */}
-                <div class="header_top">
+                <div className="header_top">
                     {/* header_top */}
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="contactinfo">
-                                    <ul class="nav nav-pills">
-                                        <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                        <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <div className="contactinfo">
+                                    <ul className="nav nav-pills">
+                                        <li><a href="#"><i className="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                                        <li><a href="#"><i className="fa fa-envelope"></i> info@domain.com</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="social-icons pull-right">
-                                    <ul class="nav navbar-nav">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <div className="col-sm-6">
+                                <div className="social-icons pull-right">
+                                    <ul className="nav navbar-nav">
+                                        <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i className="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -32,57 +32,57 @@ export default function Head() {
                 </div>
                 {/* <!--/header_top--> */}
 
-                <div class="header-middle">
+                <div className="header-middle">
                     {/* header-middle */}
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 clearfix">
-                                <div class="logo pull-left">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-4 clearfix">
+                                <div className="logo pull-left">
                                     <a href="index.html"><img src="/frontend/images/home/logo.png" alt="" /></a>
                                 </div>
-                                <div class="btn-group pull-right clearfix">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default dropdown-toggle usa"
+                                <div className="btn-group pull-right clearfix">
+                                    <div className="btn-group">
+                                        <button type="button" className="btn btn-default dropdown-toggle usa"
                                             data-toggle="dropdown">
                                             USA
-                                            <span class="caret"></span>
+                                            <span className="caret"></span>
                                         </button>
-                                        <ul class="dropdown-menu">
+                                        <ul className="dropdown-menu">
                                             <li><a href="">Canada</a></li>
                                             <li><a href="">UK</a></li>
                                         </ul>
                                     </div>
 
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default dropdown-toggle usa"
+                                    <div className="btn-group">
+                                        <button type="button" className="btn btn-default dropdown-toggle usa"
                                             data-toggle="dropdown">
                                             DOLLAR
-                                            <span class="caret"></span>
+                                            <span className="caret"></span>
                                         </button>
-                                        <ul class="dropdown-menu">
+                                        <ul className="dropdown-menu">
                                             <li><a href="">Canadian Dollar</a></li>
                                             <li><a href="">Pound</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8 clearfix">
-                                <div class="shop-menu clearfix pull-right">
-                                    <ul class="nav navbar-nav">
-                                        <li><a href=""><i class="fa fa-user"></i> Account</a></li>
-                                        <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
+                            <div className="col-md-8 clearfix">
+                                <div className="shop-menu clearfix pull-right">
+                                    <ul className="nav navbar-nav">
+                                        <li><a href=""><i className="fa fa-user"></i> Account</a></li>
+                                        <li><a href=""><i className="fa fa-star"></i> Wishlist</a></li>
                                         <li>
                                             <Link to="/checkout">
-                                                <i class="fa fa-crosshairs"></i> Checkout
+                                                <i className="fa fa-crosshairs"></i> Checkout
                                             </Link>
                                         </li>
-                                        <li class="cart">
+                                        <li className="cart">
                                             <Link to="/cart">
-                                                <i class="fa fa-shopping-cart"><span class="cart-count">0</span></i> Cart
+                                                <i className="fa fa-shopping-cart"><span className="cart-count">0</span></i> Cart
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to="/login"><i class="fa fa-lock"></i> Login</Link>
+                                            <Link to="/login"><i className="fa fa-lock"></i> Login</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -92,25 +92,25 @@ export default function Head() {
                 </div>
                 {/* /header-middle */}
 
-                <div class="header-bottom">
+                <div className="header-bottom">
                     {/* header-bottom */}
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm-9">
+                                <div className="navbar-header">
+                                    <button type="button" className="navbar-toggle" data-toggle="collapse"
                                         data-target=".navbar-collapse">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
+                                        <span className="sr-only">Toggle navigation</span>
+                                        <span className="icon-bar"></span>
+                                        <span className="icon-bar"></span>
+                                        <span className="icon-bar"></span>
                                     </button>
                                 </div>
-                                <div class="mainmenu pull-left">
-                                    <ul class="nav navbar-nav collapse navbar-collapse">
+                                <div className="mainmenu pull-left">
+                                    <ul className="nav navbar-nav collapse navbar-collapse">
                                         <li><Link to="/" className="active">Home</Link></li>
-                                        <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                            <ul role="menu" class="sub-menu">
+                                        <li className="dropdown"><a href="#">Shop<i className="fa fa-angle-down"></i></a>
+                                            <ul role="menu" className="sub-menu">
                                                 <li><a href="shop.html">Products</a></li>
                                                 <li><a href="product-details.html">Product Details</a></li>
                                                 <li><a href="checkout.html">Checkout</a></li>
@@ -118,8 +118,8 @@ export default function Head() {
                                                 <li><a href="login.html">Login</a></li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                            <ul role="menu" class="sub-menu">
+                                        <li className="dropdown"><a href="#">Blog<i className="fa fa-angle-down"></i></a>
+                                            <ul role="menu" className="sub-menu">
                                                 <li><a href="blog.html">Blog List</a></li>
                                                 <li><a href="blog-single.html">Blog Single</a></li>
                                             </ul>
@@ -129,8 +129,8 @@ export default function Head() {
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="search_box pull-right">
+                            <div className="col-sm-3">
+                                <div className="search_box pull-right">
                                     <input type="text" placeholder="Search" />
                                 </div>
                             </div>

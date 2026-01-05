@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Index from './component/Blog/Index';
 import Detail from './component/Blog/Detail';
+import IndexMember from './component/Member/IndexMember';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,9 +16,10 @@ root.render(
     <BrowserRouter>
       <App>
         <Routes>
-          <Route exact path='/' element={<Home />} />
+          <Route index path='/' element={<Home />} />
           <Route path='/blog/list' element={<Index />} />
           <Route path='/blog/detail/:id' element={<Detail />} />
+          <Route path='/member/login-register' element={<IndexMember />} />
         </Routes>
       </App>
     </BrowserRouter>
