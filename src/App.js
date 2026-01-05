@@ -4,7 +4,7 @@ import Footer from './component/Layout/Footer'
 import MenuLeft from './component/Layout/MenuLeft'
 import { Outlet } from 'react-router-dom';
 
-function App(props) {
+function App() {
   return (
     <>
       <Head />
@@ -13,7 +13,7 @@ function App(props) {
         <div className='container'>
           <div className='row'>
             <MenuLeft />
-            {props.children}
+            <Outlet />
           </div>
         </div>
       </section>
