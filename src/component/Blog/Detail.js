@@ -1,19 +1,46 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Rate from "./Rate";
+import ListComment from "./ListComment";
+import Comment from "./Comment";
 
 export default function Detail(props) {
 	let params = useParams();
 
 	const [data, setData] = useState({});
+	const [comment, setComment] = useState([]);
+	const [idCmtCha, setIdCmtCha] = useState(0);
 
 	useEffect(() => {
+		// callApiBlogDetail();
 		axios.get('http://localhost:8080/laravel8/laravel8/public/api/blog/detail/' + params.id)
 		.then(res=>{
-			setData(res.data.data)
+			setData(res.data.data);
+			setComment(res.data.data.comment);
 		})
 		.catch(error => console.log(error));
 	},[])
+
+	// function callApiBlogDetail() {
+	// 	axios.get('http://localhost:8080/laravel8/laravel8/public/api/blog/detail/' + params.id)
+	// 	.then(res=>{
+	// 		setData(res.data.data);
+	// 		setComment(res.data.data.comment);
+	// 	})
+	// 	.catch(error => console.log(error));
+	// }
+
+	function getCmt(data) {
+		console.log(data);
+		const listComment = [data, ...comment];
+		setComment(listComment);
+		// setComment(state => ([data, ...state]));
+	}
+
+	function setIdCommentCha(idCmtCha) {
+		setIdCmtCha(idCmtCha);
+	}
 
     return (
         <>
@@ -55,187 +82,17 @@ export default function Detail(props) {
 					</div>
                     {/* <!--/blog-post-area--> */}
 
-					<div class="rating-area">
-						<ul class="ratings">
-							<li class="rate-this">Rate this item:</li>
-							<li>
-								<i class="fa fa-star color"></i>
-								<i class="fa fa-star color"></i>
-								<i class="fa fa-star color"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</li>
-							<li class="color">(6 votes)</li>
-						</ul>
-						<ul class="tag">
-							<li>TAG:</li>
-							<li><a class="color" href="">Pink <span>/</span></a></li>
-							<li><a class="color" href="">T-Shirt <span>/</span></a></li>
-							<li><a class="color" href="">Girls</a></li>
-						</ul>
-					</div>
-                    {/* <!--/rating-area--> */}
+					<Rate />
 
 					<div class="socials-share">
 						<a href=""><img src="/frontend/images/blog/socials.png" alt="" /></a>
-					</div>
-                    {/* <!--/socials-share--> */}
+					</div>                    
 
-					{/* <div class="media commnets">
-						<a class="pull-left" href="#">
-							<img class="media-object" src="/frontend/images/blog/man-one.jpg" alt="" />
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Annie Davis</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-							<div class="blog-socials">
-								<ul>
-									<li><a href=""><i class="fa fa-facebook"></i></a></li>
-									<li><a href=""><i class="fa fa-twitter"></i></a></li>
-									<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-									<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-								</ul>
-								<a class="btn btn-primary" href="">Other Posts</a>
-							</div>
-						</div>
-					</div> */}
-                    {/* <!--Comments--> */}
-					<div class="response-area">
-						<h2>3 RESPONSES</h2>
-						<ul class="media-list">
-							<li class="media">
-								
-								<a class="pull-left" href="#">
-									<img class="media-object" src="/frontend/images/blog/man-two.jpg" alt="" />
-								</a>
-								<div class="media-body">
-									<ul class="sinlge-post-meta">
-										<li><i class="fa fa-user"></i>Janis Gallagher</li>
-										<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-										<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-								</div>
-							</li>
-							<li class="media second-media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="/frontend/images/blog/man-three.jpg" alt="" />
-								</a>
-								<div class="media-body">
-									<ul class="sinlge-post-meta">
-										<li><i class="fa fa-user"></i>Janis Gallagher</li>
-										<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-										<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-								</div>
-							</li>
-							<li class="media second-media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="/frontend/images/blog/man-three.jpg" alt="" />
-								</a>
-								<div class="media-body">
-									<ul class="sinlge-post-meta">
-										<li><i class="fa fa-user"></i>Janis Gallagher</li>
-										<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-										<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-								</div>
-							</li>
-							<li class="media second-media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="/frontend/images/blog/man-three.jpg" alt="" />
-								</a>
-								<div class="media-body">
-									<ul class="sinlge-post-meta">
-										<li><i class="fa fa-user"></i>Janis Gallagher</li>
-										<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-										<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-								</div>
-							</li>
-							<li class="media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="/frontend/images/blog/man-four.jpg" alt="" />
-								</a>
-								<div class="media-body">
-									<ul class="sinlge-post-meta">
-										<li><i class="fa fa-user"></i>Janis Gallagher</li>
-										<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-										<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-								</div>
-							</li>
-							<li class="media second-media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="/frontend/images/blog/man-three.jpg" alt="" />
-								</a>
-								<div class="media-body">
-									<ul class="sinlge-post-meta">
-										<li><i class="fa fa-user"></i>Janis Gallagher</li>
-										<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-										<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-								</div>
-							</li>
-							<li class="media second-media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="/frontend/images/blog/man-three.jpg" alt="" />
-								</a>
-								<div class="media-body">
-									<ul class="sinlge-post-meta">
-										<li><i class="fa fa-user"></i>Janis Gallagher</li>
-										<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-										<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-								</div>
-							</li>
-							<li class="media second-media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="/frontend/images/blog/man-three.jpg" alt="" /> 
-								</a>
-								<div class="media-body">
-									<ul class="sinlge-post-meta">
-										<li><i class="fa fa-user"></i>Janis Gallagher</li>
-										<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-										<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									<a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-								</div>
-							</li>
-						</ul>					
-					</div>
-                    {/* <!--/Response-area--> */}
-					<div class="replay-box">
-						<div class="row">
-							<div class="col-sm-12">
-								<h2>Leave a replay</h2>
-								
-								<div class="text-area">
-									<div class="blank-arrow">
-										<label>Your Name</label>
-									</div>
-									<span>*</span>
-									<textarea name="message" rows="11"></textarea>
-									<a class="btn btn-primary" href="">post comment</a>
-								</div>
-							</div>
-						</div>
-					</div>
-                    {/* <!--/Repaly Box--> */}
+					<ListComment setIdCommentCha={setIdCommentCha} getCmt={getCmt} comment={comment} />
+					
+					{/* <Comment updateUIComment={callApiBlogDetail} /> */}
+					<Comment getCmt={getCmt} setIdCommentCha={setIdCommentCha} idCmtCha={idCmtCha}/>
+
 				</div>
         </>
     );

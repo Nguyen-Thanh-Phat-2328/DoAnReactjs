@@ -47,7 +47,7 @@ export default function Login() {
                     setErr(res.data.errors);
                 } else {
                     console.log(res);
-                    localStorage.setItem("user", JSON.stringify(res.data.token));
+                    localStorage.setItem("user", JSON.stringify(res.data));
                     navigate('/');
                 }
             })
