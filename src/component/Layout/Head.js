@@ -152,7 +152,7 @@ export default function Head() {
                                         </li>
                                         <li className="dropdown"><a href="#">Blog<i className="fa fa-angle-down"></i></a>
                                             <ul role="menu" className="sub-menu">
-                                                <li><a href="blog.html">Blog List</a></li>
+                                                <li><Link to="/blog/list">Blog List</Link></li>
                                                 <li><a href="blog-single.html">Blog Single</a></li>
                                             </ul>
                                         </li>
