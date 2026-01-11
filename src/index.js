@@ -11,26 +11,42 @@ import IndexMember from './component/Member/IndexMember';
 import Account from './component/Member/Account';
 import AppNoMenuLeft from './AppNoMenuLeft';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route element={<App />}>
+      <App>
+        <Routes>
           <Route path='/blog/list' element={<Index />} />
           <Route path='/blog/detail/:id' element={<Detail />} />
-        </Route>
-
-        <Route element={<AppNoMenuLeft />}>
           <Route index path='/' element={<Home />} />
           <Route path='/login' element={<IndexMember />} />
           <Route path='/account' element={<Account />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </App>
     </BrowserRouter>
   </React.StrictMode>
 );
+
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <React.StrictMode>
+//     <BrowserRouter>
+//       <Routes>
+//         <Route element={<App />}>
+//           <Route path='/blog/list' element={<Index />} />
+//           <Route path='/blog/detail/:id' element={<Detail />} />
+//         </Route>
+
+//         <Route element={<AppNoMenuLeft />}>
+//           <Route index path='/' element={<Home />} />
+//           <Route path='/login' element={<IndexMember />} />
+//           <Route path='/account' element={<Account />} />
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   </React.StrictMode>
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

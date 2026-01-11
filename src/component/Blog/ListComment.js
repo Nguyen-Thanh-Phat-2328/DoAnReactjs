@@ -4,7 +4,7 @@ export default function ListComment(props) {
     const { setIdCommentCha } = props;
 
     function renderDataComment() {
-        console.log(comment);
+        // console.log(comment);
         if (comment.length > 0) {
             const arrCha = comment.filter((value) => {
                 return parseInt(value.id_comment) === 0;
