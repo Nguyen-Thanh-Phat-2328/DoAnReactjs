@@ -10,6 +10,8 @@ import Detail from './component/Blog/Detail';
 import IndexMember from './component/Member/IndexMember';
 import Account from './component/Member/Account';
 import AppNoMenuLeft from './AppNoMenuLeft';
+import Product from './component/Member/Product';
+import AddProduct from './component/Member/AddProduct';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +24,8 @@ root.render(
           <Route index path='/' element={<Home />} />
           <Route path='/login' element={<IndexMember />} />
           <Route path='/account' element={<Account />} />
+          <Route path='/account/product' element={<Product />} />
+          <Route path='/account/addproduct' element={<AddProduct />} />
         </Routes>
       </App>
     </BrowserRouter>
