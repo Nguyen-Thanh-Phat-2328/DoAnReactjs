@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { use, useEffect, useState } from "react";
 import FormError from "./FormError";
@@ -23,7 +23,15 @@ export default function UpdateProduct(props) {
     const listNameImageFile = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
 
     const [getProduct, setProduct] = useState({});
+    const [avatarCheckBox, setAvatarCheckBox] = useState([]);
     const userComment = JSON.parse(localStorage.getItem('user'));
+
+    const [demFileCu, setDemFileCu] = useState(0);
+    const [demFileMoi, setDemFileMoi] = useState(0);
+
+    const [getFile, setFile] = useState('');
+
+    const navigate = useNavigate();
 
     let config = {
         headers: {
@@ -64,6 +72,7 @@ export default function UpdateProduct(props) {
             });
 
             setIsSale(item.status);
+            setDemFileCu(JSON.parse(item.image).length);
         });
     },[getProduct])
 
@@ -101,8 +110,6 @@ export default function UpdateProduct(props) {
         })
     }
 
-    const [avatarCheckBox, setAvatarCheckBox] = useState([]);
-
     function handleCheckFileImage(e) {
         if(e.target.checked) {
             setAvatarCheckBox(arr => [...arr, e.target.value]);
@@ -136,10 +143,13 @@ export default function UpdateProduct(props) {
         }
     }
 
-    const [getFile, setFile] = useState('');
     function handleFile(e) {
         setFile(e.target.files);
     }
+
+    useEffect(() => {
+        setDemFileMoi(getFile.length);
+    }, [getFile]);
 
     function checkImageFile(fileName) {
         const arrNameFile = fileName.split('.');
@@ -205,6 +215,11 @@ export default function UpdateProduct(props) {
             })
         }
 
+        if(demFileMoi + demFileCu - avatarCheckBox.length > 3) {
+            errSubmit.file = 'Tổng số ảnh không được quá 3';
+            flag = false;
+        }
+
         if(!flag) {
             setErr(errSubmit);
         } else {
@@ -241,6 +256,7 @@ export default function UpdateProduct(props) {
                     setErr(res.data.errors);
                 } else {
                     alert("Sửa sản phẩm thành công");
+                    navigate('/account/product');
                 }
             })
         }
