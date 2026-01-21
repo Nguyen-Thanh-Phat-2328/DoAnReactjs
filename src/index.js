@@ -13,6 +13,7 @@ import AppNoMenuLeft from './AppNoMenuLeft';
 import Product from './component/Member/Product';
 import AddProduct from './component/Member/AddProduct';
 import UpdateProduct from './component/Member/UpdateProduct';
+import ProductDetail from './ProductDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +29,7 @@ root.render(
           <Route path='/account/product' element={<Product />} />
           <Route path='/account/addproduct' element={<AddProduct />} />
           <Route path='/account/updateproduct/:id' element={<UpdateProduct />} />
+          <Route path='/product/detail/:id' element={<ProductDetail />} />
         </Routes>
       </App>
     </BrowserRouter>
