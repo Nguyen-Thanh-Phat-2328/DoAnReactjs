@@ -15,7 +15,7 @@ function App(props) {
         <div className='container'>
           <div className='row'>
             {
-              params1['pathname'].includes("account") ? <MenuAcc /> : <MenuLeft />
+              params1['pathname'].includes("account") ? <MenuAcc /> : params1['pathname'].includes("cart") ? '' : <MenuLeft />
             }
             {props.children}
           </div>
