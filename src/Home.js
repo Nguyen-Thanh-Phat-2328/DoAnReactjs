@@ -11,15 +11,30 @@ export default function Home() {
                 setListProduct(res.data.data);
                 // console.log(res.data.data);
             }).catch(err => console.log(err));
+
+        // setCart(JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : {});
     }, []);
 
     function handleClickDetail(id) {
         navigate('/product/detail/'+ id);
     }
+
+    let getCart = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : {};
+
+    function handleClickAddToCart(id, qty) {
+        Object.keys(getCart).map((key) => {
+            if(key == id) {
+                qty = getCart[key] + qty;
+            }
+        })
+        getCart = {...getCart, [id]: qty};
+        localStorage.setItem('cart', JSON.stringify(getCart));
+    }
+
     function renderListProduct() {
         return getListProduct.map((value, index) => {
             return (
-                <div class="col-sm-4">
+                <div class="col-sm-4" key={index}>
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
@@ -37,7 +52,7 @@ export default function Home() {
                                 <div class="overlay-content">
                                     <h2>${value.price}</h2>
                                     <p>{value.name}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i
+                                    <a class="btn btn-default add-to-cart" onClick={() => handleClickAddToCart(value.id, 1)}><i
                                         class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                             </div>
