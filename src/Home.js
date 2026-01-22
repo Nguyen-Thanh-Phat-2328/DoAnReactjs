@@ -1,10 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
 export default function Home() {
     const navigate = useNavigate();
     const [getListProduct, setListProduct] = useState([]);
+
+    const {getToTalCart, setToTalCart} = useContext(UserContext);
+
     useEffect(() => {
         axios.get("http://localhost:8080/laravel8/laravel8/public/api/product")
             .then(res => {
@@ -29,6 +33,13 @@ export default function Home() {
         })
         getCart = {...getCart, [id]: qty};
         localStorage.setItem('cart', JSON.stringify(getCart));
+
+        //update total cart trên Head
+        let totalCart = 0;
+        Object.keys(getCart).map((key) => {
+            totalCart = totalCart + getCart[key];
+        })
+        setToTalCart(totalCart);
     }
 
     function renderListProduct() {

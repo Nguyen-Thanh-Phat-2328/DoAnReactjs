@@ -4,11 +4,15 @@ import Footer from './component/Layout/Footer'
 import MenuLeft from './component/Layout/MenuLeft'
 import { Outlet, useLocation } from 'react-router-dom';
 import MenuAcc from './component/Member/MenuAcc';
+import { UserContext } from './UserContext';
+import { useEffect, useState } from 'react';
 
 function App(props) {
   let params1 = useLocation();
+  const [getToTalCart, setToTalCart] = useState(0);
+
   return (
-    <>
+    <UserContext.Provider value={{ getToTalCart, setToTalCart }}>
       <Head />
 
       <section>
@@ -23,7 +27,7 @@ function App(props) {
       </section>
 
       <Footer />
-    </>
+    </UserContext.Provider>
   );
 }
 
