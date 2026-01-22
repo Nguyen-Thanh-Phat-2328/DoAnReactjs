@@ -1,8 +1,21 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../UserContext";
 export default function Head() {
     const navigate = useNavigate();
-    let isLogin;
+    const { getToTalCart, setToTalCart } = useContext(UserContext);
+
+    useEffect(() => {
+        const cartLocal = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : {};
+        let totalCart = 0;
+        if (Object.keys(cartLocal).length > 0) {
+            Object.keys(cartLocal).map(key => {
+                totalCart = totalCart + cartLocal[key];
+            });
+        }
+        setToTalCart(totalCart);
+    })
+
     function renderLogin() {
         const isLogin = JSON.parse(localStorage.getItem("user"));
         if (isLogin) {
@@ -22,7 +35,7 @@ export default function Head() {
 
     function renderAccount() {
         const isLogin = JSON.parse(localStorage.getItem("user"));
-        if(isLogin) {
+        if (isLogin) {
             return (
                 <li><Link to={"/account"}><i className="fa fa-user"></i> Account</Link></li>
             );
@@ -112,7 +125,7 @@ export default function Head() {
                                         </li>
                                         <li className="cart">
                                             <Link to="/cart">
-                                                <i className="fa fa-shopping-cart"><span className="cart-count">0</span></i> Cart
+                                                <i className="fa fa-shopping-cart"><span className="cart-count">{getToTalCart}</span></i> Cart
                                             </Link>
                                         </li>
                                         {renderLogin()}

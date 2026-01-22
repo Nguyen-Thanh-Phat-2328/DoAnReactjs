@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "./UserContext";
 
 export default function Cart() {
     const getCartLocal = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : {};
     const [getCart, setCart] = useState([]);
+
+    const {getToTalCart, setToTalCart} = useContext(UserContext);
 
     let total = 0;
 
@@ -43,6 +46,13 @@ export default function Cart() {
         localStorage.setItem('cart', JSON.stringify(getCartLocal));
 
         setCart(newCart);
+
+        //update total cart trên Head
+        let totalCart = 0;
+        Object.keys(getCartLocal).map((key) => {
+            totalCart = totalCart + getCartLocal[key];
+        })
+        setToTalCart(totalCart);
     }
 
     Object.keys(getCart).map(key => {
