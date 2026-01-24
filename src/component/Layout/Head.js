@@ -125,7 +125,8 @@ export default function Head() {
                                         </li>
                                         <li className="cart">
                                             <Link to="/cart">
-                                                <i className="fa fa-shopping-cart"><span className="cart-count">{getToTalCart}</span></i> Cart
+                                                <i className="fa fa-shopping-cart"></i>
+                                                <span className="cart-count">{getToTalCart}</span> Cart
                                             </Link>
                                         </li>
                                         {renderLogin()}
