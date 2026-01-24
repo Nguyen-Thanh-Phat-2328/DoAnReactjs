@@ -1,9 +1,9 @@
 /* css giỏ hàng */
-.shop-menu .nav .cart i {
+.shop-menu .nav .cart {
     position: relative;
 }
 
-.shop-menu .nav .cart i .cart-count {
+.shop-menu .nav .cart .cart-count {
     position: absolute;
     top: -8px;
     right: -8px;

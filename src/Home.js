@@ -7,7 +7,7 @@ export default function Home() {
     const navigate = useNavigate();
     const [getListProduct, setListProduct] = useState([]);
 
-    const {getToTalCart, setToTalCart} = useContext(UserContext);
+    const {setToTalCart} = useContext(UserContext);
 
     useEffect(() => {
         axios.get("http://localhost:8080/laravel8/laravel8/public/api/product")
