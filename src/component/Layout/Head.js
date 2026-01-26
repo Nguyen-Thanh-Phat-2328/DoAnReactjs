@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
+import { useSelector } from "react-redux";
 export default function Head() {
     const navigate = useNavigate();
     const { getToTalCart, setToTalCart } = useContext(UserContext);
@@ -46,6 +47,9 @@ export default function Head() {
         localStorage.removeItem("user");
         navigate('/login');
     }
+
+    //redux
+    const totalCartRedux = useSelector(state => state.cart.totalCart);
 
     return (
         <>
@@ -117,7 +121,12 @@ export default function Head() {
                                 <div className="shop-menu clearfix pull-right">
                                     <ul className="nav navbar-nav">
                                         {renderAccount()}
-                                        <li><a href=""><i className="fa fa-star"></i> Wishlist</a></li>
+                                        <li>
+                                            <a href="/cart/redux">
+                                                <i className="fa fa-star"></i> Wishlist
+                                                <span>{totalCartRedux}</span>
+                                            </a>
+                                        </li>
                                         <li>
                                             <Link to="/checkout">
                                                 <i className="fa fa-crosshairs"></i> Checkout
