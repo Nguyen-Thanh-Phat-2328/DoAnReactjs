@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "./actions/cart";
 
 export default function Home() {
     const navigate = useNavigate();
@@ -13,10 +15,7 @@ export default function Home() {
         axios.get("http://localhost:8080/laravel8/laravel8/public/api/product")
             .then(res => {
                 setListProduct(res.data.data);
-                // console.log(res.data.data);
             }).catch(err => console.log(err));
-
-        // setCart(JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : {});
     }, []);
 
     function handleClickDetail(id) {
@@ -34,12 +33,20 @@ export default function Home() {
         getCart = {...getCart, [id]: qty};
         localStorage.setItem('cart', JSON.stringify(getCart));
 
-        //update total cart trên Head
+        //update total cart trên Head dùng context
         let totalCart = 0;
         Object.keys(getCart).map((key) => {
             totalCart = totalCart + getCart[key];
         })
         setToTalCart(totalCart);
+    }
+
+    //update total cart trên Head dùng redux
+    const dispatch = useDispatch();
+
+    function handleClickAddToCartRedux(id, qty) {
+        const action = addToCart(id, qty);
+        dispatch(action);
     }
 
     function renderListProduct() {
@@ -71,7 +78,7 @@ export default function Home() {
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
                                 <li><a onClick={() => handleClickDetail(value.id)}><i class="fa fa-plus-square"></i>Detail</a></li>
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                <li><a onClick={() => handleClickAddToCartRedux(value.id, 1)}><i class="fa fa-plus-square"></i>Add to compare</a></li>
                             </ul>
                         </div>
                     </div>
