@@ -9,7 +9,7 @@ export default function Home() {
     const navigate = useNavigate();
     const [getListProduct, setListProduct] = useState([]);
 
-    const {setToTalCart} = useContext(UserContext);
+    const {setToTalCart, getWishlist, setWishlist} = useContext(UserContext);
 
     useEffect(() => {
         axios.get("http://localhost:8080/laravel8/laravel8/public/api/product")
@@ -49,6 +49,18 @@ export default function Home() {
         dispatch(action);
     }
 
+
+    //wishlist
+    function handleClickAddToWishlist(id) {
+        setWishlist(state => {
+            if(state.includes(id)) {
+                return state;
+            } else {
+                return [...state, id];
+            }
+        })
+    }
+
     function renderListProduct() {
         return getListProduct.map((value, index) => {
             return (
@@ -78,7 +90,8 @@ export default function Home() {
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
                                 <li><a onClick={() => handleClickDetail(value.id)}><i class="fa fa-plus-square"></i>Detail</a></li>
-                                <li><a onClick={() => handleClickAddToCartRedux(value.id, 1)}><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                {/* <li><a onClick={() => handleClickAddToCartRedux(value.id, 1)}><i class="fa fa-plus-square"></i>Add to compare</a></li> */}
+                                <li><a onClick={() => handleClickAddToWishlist(value.id)}><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                             </ul>
                         </div>
                     </div>

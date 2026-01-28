@@ -15,6 +15,7 @@ import AddProduct from './component/Member/AddProduct';
 import UpdateProduct from './component/Member/UpdateProduct';
 import ProductDetail from './ProductDetail';
 import CartUseRedux from './CartUseRedux';
+import Wishlist from './Wishlist';
 import Cart from './Cart';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -37,6 +38,7 @@ root.render(
             <Route path='/product/detail/:id' element={<ProductDetail />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/cart/redux' element={<CartUseRedux />} />
+            <Route path='/wishlist' element={<Wishlist />} />
           </Routes>
         </App>
       </BrowserRouter>
