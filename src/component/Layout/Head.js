@@ -4,7 +4,7 @@ import { UserContext } from "../../UserContext";
 import { useSelector } from "react-redux";
 export default function Head() {
     const navigate = useNavigate();
-    const { getToTalCart, setToTalCart } = useContext(UserContext);
+    const { getToTalCart, setToTalCart, getWishlist } = useContext(UserContext);
 
     useEffect(() => {
         const cartLocal = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : {};
@@ -16,6 +16,11 @@ export default function Head() {
         }
         setToTalCart(totalCart);
     })
+
+    let totalWishlist = getWishlist.length;
+    useEffect(() => {
+        totalWishlist = getWishlist.length;
+    }, [getWishlist])
 
     function renderLogin() {
         const isLogin = JSON.parse(localStorage.getItem("user"));
@@ -49,7 +54,7 @@ export default function Head() {
     }
 
     //redux
-    const totalCartRedux = useSelector(state => state.cart.totalCart);
+    // const totalCartRedux = useSelector(state => state.cart.totalCart);
 
     return (
         <>
@@ -122,9 +127,9 @@ export default function Head() {
                                     <ul className="nav navbar-nav">
                                         {renderAccount()}
                                         <li>
-                                            <a href="/cart/redux">
+                                            <a href="/wishlist">
                                                 <i className="fa fa-star"></i> Wishlist
-                                                <span>{totalCartRedux}</span>
+                                                <span>{totalWishlist == 0 ? '' : totalWishlist}</span>
                                             </a>
                                         </li>
                                         <li>

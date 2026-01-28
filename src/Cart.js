@@ -64,7 +64,8 @@ export default function Cart() {
             return (
                 <tr key={index}>
                     <td className="cart_product">
-                        <a href=""><img src={getCart[key].image} alt="" /></a>
+                        {/* <a href=""><img src={getCart[key].image} alt="" /></a> */}
+                        <a href=""><img style={{ width: "80px", height: "80px", objectFit: "cover" }} src={"http://localhost:8080/laravel8/laravel8/public/upload/product/"+ getCart[key].id_user +"/"+ JSON.parse(getCart[key].image)[0]} alt="" /></a>
                     </td>
                     <td className="cart_description">
                         <h4><a href="">{getCart[key].name}</a></h4>
